@@ -71,7 +71,7 @@
             </div>
             <div class="row pt-4" >
                 <!-- Produit *3  -->
-                <div class="col-sm-6 .col-md-6">
+                <div class="col-sm-6 .col-md-6 mb-2">
                   <div class=" container description bord">
                     <h2 class="pb-1">Produits choisit pour vous.</h2>
                     <div class="row">
@@ -88,24 +88,32 @@
                   </div>
                 </div>
                 <!-- Ajouter au panier -->
-                <div class="col-sm-6 .col-md-6 d-flex justify-content-center">
+                <div class="col-sm-6 .col-md-6 mb-2">
                   <div class=" container warning bord pb-2 opacity-75">
-                  
-                  <p class="bord  px-5 selection my-3 text-center gras"> Quantité</p>
-                        <div class="col-sm-6 .col-md-6  mt-2 container d-flex">
-                            <button class="bord  px-5 selection my-3 ms-4 row ">
-                              <p class="col-sm-6 .col-md-6 pt-3">X 1</p>
-                              <div class="col-sm-6 .col-md-6">
-                                <img src="{{asset("symbole/fleche-vers-le-haut.png")}}" class="fleche">
-                                <img src="{{asset("symbole/fleche-vers-le-bas.png")}}" class="fleche">
-                              </div>  
-                            </button>
+                        <p class="bord px-5 selection my-3 text-center gras"> Quantité</p>
+
+                        <div class="row  selection gras bord text-center">  
+                                <p class="col mt-5">X {{quantite}}</p>  
+                          <div class="col my-2">
+                                <div class="col container">
+                                  <a class="selection" href="{{path('+')}}">
+                                    <button class="bord selection mt-1 container">
+                                      <img src="{{asset("symbole/fleche-vers-le-haut.png")}}" >
+                                    </button>
+                                  </a>
+                                  <a class="selection" href="{{path('-')}}">
+                                    <button class="bord selection mt-1 container">
+                                      <img src="{{asset("symbole/fleche-vers-le-bas.png")}}">
+                                    </button>
+                                  </a>
+                                </div>  
+                          </div>   
                         </div>
                         <div class="col-sm-6 .col-md-6 mt-3 container">
                           <a class="selection" href="{{path('panier_add', {'id':produit.id})}}">
                             <button class="bord px-3 selection my-2 ms-4 row">
-                              <img class="col-sm-6 .col-md-6" src="{{asset("symbole/panier2.png")}}">
-                              <p class="col-sm-6 .col-md-6 pt-2 ">Dans le panier</p>
+                              <img class="col" src="{{asset("symbole/panier2.png")}}">
+                              <p class="col mt-2">Dans le panier</p>
                             </button>
                           </a>
                         </div>

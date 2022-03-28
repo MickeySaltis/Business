@@ -152,14 +152,6 @@
 	color: black;
 	font-weight: bold;
 }
-.fleche {
-	transition:color 0.30s;
-	color: #AFFC41;
-}
-.fleche:hover {
-	width: 90%;
-	height: 80%;
-}
 .avis{
 	transition:color 0.20s;
 }

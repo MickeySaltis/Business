@@ -19,13 +19,16 @@ class PanierController extends AbstractController
     #[Route('/{id}', name: 'add', requirements: ['id' => '\d+'])]
     public function addPanier(Produit $produit, Request $request){
 
+        // Récupération de la Session depuis l'Objet Request SYMFONY
+        $session = $request->getSession();
+
+        $quantite = $session->get("quantite");
+
         // Création d'un nouvelle Objet ProductOrder
         $productOrder = new ProductOrder();
         $productOrder ->setProduct($produit);
-        $productOrder ->setQuantity(1);
+        $productOrder ->setQuantity($quantite);
 
-        // Récupération de la Session depuis l'Objet Request SYMFONY
-        $session = $request->getSession();
 
         // Déclaration du tableau Panier
         $panier=[];

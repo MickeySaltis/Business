@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\SousCategorie;
+use Symfony\Component\HttpFoundation\Request;
 
 
 // DefaultController
@@ -42,14 +43,64 @@ class DefaultController extends AbstractController
     // Chemin
     #[Route('produit/{id}', name: "detail_product")]
 
-    public function getOne(Produit $produit): Response {
+    public function getOne(Produit $produit, Request $request): Response {
 
         $produits = $this->produitRepository->findAll();
+
+        $session = $request->getSession();
+        $quantite = $session->get("quantite");
+        if($quantite == 0) {
+            $quantite = 1;
+        }
 
         return $this->render('default/produit.html.twig', [
             'produit' => $produit,
             'produits' => $produits,
+            'quantite'=> $quantite
         ]);
+    }
+
+    // Ajout Quantité Produit 
+    #[Route('/plus', name: '+')]  
+    public function plusQuantite (Request $request) {
+        // Récupération de la SESSION
+        $session = $request->getSession();
+        // Récupération de Quantite dans la SESSION
+        $quantite = $session->get("quantite");
+
+        if($quantite == 0) {
+            $quantite = 1;
+        }
+        // +1 pour Quantite
+        $quantite += 1;
+
+        // Mise à jour de la SESSION Quantite
+        $session->set("quantite", $quantite);
+
+        //var_dump($quantite);
+        //die;
+        return $this->redirect($request->headers->get('referer'));
+    }
+    // Soustraction Quantité Produit 
+    #[Route('/moins', name: '-')]  
+    public function moinsQuantite (Request $request) {
+        // Récupération de la SESSION
+        $session = $request->getSession();
+        // Récupération de Quantite dans la SESSION
+        $quantite = $session->get("quantite");
+
+        if($quantite == 0) {
+            $quantite = 1;
+        }
+        // -1 pour Quantite
+        $quantite -= 1;
+
+        // Mise à jour de la SESSION Quantite
+        $session->set("quantite", $quantite);
+
+        //var_dump($quantite);
+        //die;
+        return $this->redirect($request->headers->get('referer'));
     }
 
     // FOOTER Vue
