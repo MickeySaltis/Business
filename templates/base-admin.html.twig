@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- Base côté ADMIN -->
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}la Nîmes'alerie ADMINISTRATION{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    
+    <!-- CSS -->
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset("css/default.css")}}">
+            <link rel="stylesheet" href="{{ asset("css/bootstrap.css")}}">
+            <link href="{{asset("css/admin/all.min.css")}}" rel="stylesheet" type="text/css">
+            <link
+                href="{{asset("css/admin/font-google.css")}}"
+                rel="stylesheet">
+            <link href="{{asset("css/admin/sb-admin-2.min.css")}}" rel="stylesheet">
+        {% endblock %}
+
+    <!-- JS -->
+        {% block javascripts %}
+            <script src="{{ asset("js/admin/jquery.min.js")}}"></script>
+            <script src="{{ asset("js/admin/jquery.easing.min.js")}}"></script>
+            <script src="{{ asset("js/admin/bootstrap.bundle.min.js")}}"></script>
+            <script src="{{ asset("js/admin/sb-admin-2.min.js")}}"></script>
+        {% endblock %}
+    </head>
+
+    <!-- Corps de la page -->
+    <body id="page-top">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            {# Menu #}
+            {% include "admin/parts/menu.html.twig" %}
+
+            <!-- Enveloppe de contenu -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Contenu principal -->
+                <div id="content">
+
+                    {# Barre du haut de la page #}
+                    {% include "admin/parts/top.html.twig"%}
+
+                    <!-- Début du contenu de la page -->
+                    <div class="container-fluid">
+
+                        <!-- En-tête de page -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            {% block heading %}
+                            {% endblock %}
+                        </div>
+
+                        {# Corps #}
+                        {% block body %}{% endblock %}
+                    </div>
+
+                </div>
+
+                {# Pied de page #}
+                {% include "admin/parts/footer.html.twig" %}
+
+            </div>
+            <!-- Fin de l'enveloppe de contenu -->
+
+        </div>
+        <!-- Fin Wrapper -->
+
+        <!-- Faites défiler jusqu'au bouton supérieur -->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Modalité de déconnexion -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

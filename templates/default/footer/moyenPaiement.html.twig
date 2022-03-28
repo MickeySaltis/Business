@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nîmes'Alerie{% endblock %}
+
+{% block body %}
+        <body>
+            <main class="container ">
+                <div class="primary bord text-center my-4 p-5">
+                    <h2 class="pb-4">Informations de livraison Nimes'alerie</h2>
+                        <h3 class="pb-2">Moyen de Paiement</h3>
+
+                                <p><span class="gras"> Moyen de paiement disponibles </span><br>
+                                Sur Nimesalerie.fr le règlement peut s'effectuer :<br>
+
+                                    - Soit par carte bancaire via l’interface de paiement sécurisé DALENYS : CB, VISA, MASTERCARD, AMERICAN EXPRESS, 
+                                    E-CB<br>
+                                    - Soit par Paypal</p>
+
+                                <p><span class="gras">Paiement en ligne par carte bancaire</span><br>
+                                Dans le cadre d’un paiement par Carte Bancaire, la vente n’est considérée comme conclue qu’à compter de l’acceptation 
+                                du paiement sur la zone sécurisé DALENYS, de l’authentification éventuelle de l'émetteur du paiement avec le procédé 3D 
+                                SECURE et de la confirmation de la commande par Nimes'alerie.<br>
+                                En cas de refus du paiement de la part de DALENYS ou du système 3D SECURE, le Client est immédiatement informé dans 
+                                l’interface de paiement. Dans ce cas, la commande ne sera pas prise en compte par Nimes'alerie.<br>
+
+                                Le paiement par carte bancaire est irrévocable, sauf en cas d’utilisation frauduleuse de la carte. Dans ce cas, le Client 
+                                peut demander l’annulation du paiement et la restitution des sommes correspondantes sous preuves de justificatifs 
+                                (opposition, attestation sur l’honneur, etc.).</p>
+
+                                <p><span class="gras">Paiement express</span><br>
+                                Par défaut, lors du paiement en ligne, les coordonnées de carte bancaire ne sont pas enregistrées.<br>
+
+                                Nimes'alerie offre aussi la possibilité au Client d’enregistrer ses coordonnées de carte bancaire, afin que, lors de ses
+                                futurs achats, il n’ait pas à saisir à nouveau ses informations de paiement.<br>
+                                Pour se faire, le Client doit :<br>
+
+                                    - Choisir le moyen de paiement « carte bancaire »<br>
+                                    - Cocher la case « Enregistrer mes informations pour effectuer mes prochains paiements rapidement » sur la page
+                                    de paiement carte bancaire<br>
+                                    - Renseigner ses coordonnées (les données bancaires saisies sur la page de paiement sont cryptées et sécurisés)
+                                    Valider le paiement.<br>
+
+                                Une fois le paiement validé, les données relatives à la carte bancaire utilisée sont enregistrées et seront 
+                                utilisables lors des prochaines commandes du Client, au moment de régler son achat.
+                                Ces coordonnées bancaires ne sont pas connues ni conservées par Nimes'alerie, mais par le prestataire de paiement BEBILL 
+                                sur des serveurs sécurisés.<br>
+
+                                Le Client a à tout moment la possibilité de supprimer ou remplacer les données relatives à la carte bancaire 
+                                enregistrée en s’authentifiant à son compte Client, dans la rubrique « Mes moyens de paiement ».
+                                Le Client est alors redirigé sur une page sécurisée pour procéder à ces opérations de suppression ou de mise à jour.</p>
+
+                                <p><span class="gras">Paiement en ligne via Paypal</span><br>
+                                Dans le cadre d’un paiement par l’intermédiaire de Paypal, la vente n’est considérée comme conclue qu’à compter de 
+                                l’acceptation du paiement par Paypal et de la confirmation de la commande par Nimes'alerie.
+                                En cas de refus du paiement de la part de Paypal, le Client est immédiatement informé dans l’interface de paiement. 
+                                Dans ce cas, la commande ne sera pas prise en compte par Nimes'alerie.<br>
+
+                                Nouvelle directive européenne sur les services de paiement (DSP2)<br>
+
+                                Depuis le 30 juin 2021, les banques doivent renforcer la sécurité des paiements en ligne en adoptant 
+                                l’authentification forte pour tous vos achats en ligne supérieur à un certain montant via un protocole appelé <br>
+                                « authentification forte du client » (« Strong Customer Authentification » ou SCA).
+
+                                Ce dispositif de sécurité concerne tous les sites e-commerce de l’Union Européenne.<br>
+
+                                Selon les procédures applicables par votre banque vous devrez probablement vous connecter à l’application mobile de 
+                                cette dernière pour valider le paiement de votre commande grâce à un code confidentiel ou une validation biométrique
+                                (iris, empreinte digitale, reconnaissance vocale).<br>
+
+                                Si vous n’avez pas encore téléchargé l’application mobile de votre banque, sachez qu’un délai de 48h pour la 
+                                validation du service par votre banque pourra être observé.</p>
+                </div>
+            </main>
+        </body>
+{% endblock %}

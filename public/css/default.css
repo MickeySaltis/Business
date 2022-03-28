@@ -1,0 +1,170 @@
+/******** COULEUR FOND */
+
+.primary
+{
+	background-color: #086375;
+}
+.success
+{
+	background-color: #1DD3B0 !important;
+}
+.warning
+{
+	background-color: #AFFC41;
+}
+.description{
+	background-color: #B2FF9E;
+}
+
+/********  FOND */
+
+.backCat
+{
+	background: url(../image/test.jpg) no-repeat, center;
+	background-size: cover;
+	height: 300px;
+	width: 100%;
+}
+.back
+{
+	background: url(../image/1273-etoiles-WallFizz.jpg) no-repeat, center;
+	background-size: cover;
+}
+
+
+/******** Ecriture */
+.btn-outline-success
+{
+	color: #AFFC41 !important;
+}
+.btn-outline-primary
+{
+	color: #AFFC41 !important;
+}
+.backCat
+{
+	color: #AFFC41;
+}
+.primary
+{
+	color: #AFFC41;
+}
+.warning
+{
+	color: #086375;
+}
+.fin
+{
+	color: #AFFC41;
+}
+.black
+{
+	color: black;
+}
+.gras
+{
+	font-weight: bold;
+}
+
+
+/******* Bord */
+.btn-outline-success
+{
+	border-color: #AFFC41 !important;
+}
+ .bord
+ {
+ 	border-radius: 20px;
+ 	padding:5px 0 5px 0 ;
+ }
+ .logo
+ {
+ 	border-radius: 15px;
+ }
+ .spaceX
+ {
+ 	box-shadow: 10px 5px 5px black;
+ }
+.navcolor
+{
+	background-color: #AFFC41 !important;
+}
+.recherche
+{
+	background-color: #1DD3B0 !important;
+}
+.slider
+{
+	border-radius: 20px;
+	background-color: #1DD3B0;
+}
+ 
+
+/******* Menu Déroulant */
+.dropdown-menu
+{
+	background-color: #1DD3B0 !important;
+}
+/******* Menu Déroulant */
+.carousel-control-prev
+{
+	width: 5% !important;
+	color: black !important;
+	opacity: 0.9 !important;
+}
+
+
+/******* Slider */
+.carousel-control-next
+{
+	width: 5% !important;
+	color: black;
+	opacity: 0.9 !important;
+}
+
+
+/******* Lien */
+.lienProduit {
+	text-decoration: none;
+	color: #086375;
+}
+.lienProduit :hover {
+	transition: 0.25s;
+	color: black;
+}
+.lien p a{
+	text-decoration: none;
+	color: #AFFC41;
+	transition: 0.25s;
+}
+.lien p a:hover{
+	color: #1DD3B0;
+	font-weight: bold;
+}
+.selection {
+	text-decoration: none;
+	color: #AFFC41;
+	background-color: #086375;
+	transition: 0.50s
+}
+.selection:hover {
+	background-color: #1DD3B0;
+	color: black;
+	font-weight: bold;
+}
+.fleche {
+	transition:color 0.30s;
+	color: #AFFC41;
+}
+.fleche:hover {
+	width: 90%;
+	height: 80%;
+}
+.avis{
+	transition:color 0.20s;
+}
+.avis:hover{
+	color: #086375;
+	background-color: #AFFC41;
+	font-weight: bold;
+}

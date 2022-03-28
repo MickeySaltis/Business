@@ -1,0 +1,60 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %} {{ parent()}} -- Liste des produits {% endblock %}
+
+{# CSS (Parent + CSS spécifique pour la liste des Produits) #}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href=" {{asset("css/admin/datatables.min.css")}} ">
+{% endblock %}
+
+{# JS (Parent + JS spécifique pour la liste des Produits) #}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset("js/admin/datatables.min.js")}}"></script>
+    <script src="{{ asset("js/admin/init.datatables.js")}}"></script>
+{% endblock %}
+
+{% block heading %} ADMINISTRATION -> Les produits {% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+
+    <!-- Tableau des Produits -->
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr class="text-center">
+                <td class="gras align-middle">{{ produit.id }}</td>
+                <td class="gras align-middle">{{ produit.nom }}</td>
+                <td class="align-middle">{{ produit.description |striptags|slice(0, 30) }}...</td>
+                <td><img src="{{produit.image}}" class="img-thumbnail" width="100px" alt="..."></td>
+                <td class="align-middle">{{ produit.prix }} €</td>
+                <td class="align-middle">{{ produit.nbStar }} / 5</td>
+                <td class="align-middle">
+                    <a href="{{ path('admin_produit_crud_show', {'id': produit.id}) }}">Détail</a>
+                    <a href="{{ path('admin_produit_crud_edit', {'id': produit.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun produit trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Lien Nouveau Produit -->
+    <a href="{{ path('admin_produit_crud_new') }}">Nouveau Produit</a>
+{% endblock %}

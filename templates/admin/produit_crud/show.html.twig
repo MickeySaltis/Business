@@ -1,0 +1,44 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %} {{parent()}} -- Détail produit {% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Détail du produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="align-middle">Id</th>
+                <td class="text-center">{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Nom</th>
+                <td class="text-center gras">{{ produit.nom }}</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Description</th>
+                <td class="text-center">{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Image</th>
+                <td class="text-center"><img src="{{produit.image}}" class="img-thumbnail" width="300px" alt="..."></td>
+            </tr>
+            <tr>
+                <th class="align-middle">Prix</th>
+                <td class="text-center">{{ produit.prix }} €</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Note</th>
+                <td class="text-center">{{ produit.nbStar }} / 5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container text-center">
+    <a href="{{ path('admin_produit_crud_index') }}">Retour sur la liste</a> <br>
+
+    <a href="{{ path('admin_produit_crud_edit', {'id': produit.id}) }}">Modifier</a>
+
+    {{ include('admin/produit_crud/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

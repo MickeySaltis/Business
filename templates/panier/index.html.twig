@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+
+<!-- 37:57 -->
+    <!-- Panier -->
+    <div class="success container rounded my-5 pb-1">
+
+        {% if panier|length > 0 %}
+            <h1 class="text-center">Panier</h1>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th class="warning" scope="col">Produit</th>
+                        <th class="warning" scope="col">Quantité</th>
+                        <th class="warning" scope="col">Prix unitaire</th>
+                        <th class="warning" scope="col">Prix total</th>
+                        <th class="warning" scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for productOrder in panier %}
+                        <tr class="text-center align-middle">
+                            <td class="black" >
+                                <a class="text-decoration-none link-dark" 
+                                    href="{{path("detail_product", {"id": productOrder.product.id})}}">
+                                    {{productOrder.product.nom}}
+                                </a>
+                            </td>
+                            <td class="black">{{productOrder.quantity}}</td>
+                            <td class="black">{{productOrder.product.prix}} €</td>
+                            <td class="black">{{productOrder.product.prix * productOrder.quantity }} €</td>
+                            <td class="black">
+                                <a class="text-decoration-none link-dark me-3"
+                                    href="{{ path("panier_-", {"id":productOrder.product.id} )}}">
+                                        -
+                                </a>
+                                <a class="text-decoration-none link-dark"
+                                    href="{{ path("panier_+", {"id":productOrder.product.id} )}}">
+                                        +
+                                </a> <br>
+                                <a class="text-decoration-none link-dark" 
+                                    href="{{ path("panier_remove", {"id":productOrder.product.id} )}}">
+                                        Supprimer du panier
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h3 class="text-center"> Montant total du panier: {{prix}} € </h3>
+        {% else %}
+            <h1 class="text-center"> Oups votre panier est vide.</h1>
+        {% endif %}
+    </div>
+
+{% endblock %}

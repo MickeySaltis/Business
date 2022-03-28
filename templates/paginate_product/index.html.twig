@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+{% block body %}
+<!-- 49:17 -->
+    <div class="container text-center success bord my-4 pt-2">
+
+        <h1 class="mt-3 mb-4">Nos produits</h1>
+
+        <div class="row mb-3">
+            <a href="{{path('paginate_product', {'currentPage': 1 , 'nbResult': 4})}}">
+               <button class="col-sm-6 .col-md-6 primary bord avis">Afficher 4 résultats par page</button>
+            </a>
+            <a href="{{path('paginate_product', {'currentPage': 1 , 'nbResult': 8})}}">
+                <button class="col-sm-6 .col-md-6 primary bord avis">Afficher 8 résultats par page</button>
+            </a>
+        </div>
+
+        <div class="row">
+            <!-- Affichage des Produits -->
+            {% for produit in produits %}
+                <div class="col d-flex justify-content-center">
+                <div class="card m-2" style="width: 18rem;">
+                    <a href="{{path("detail_product", {"id": produit.id})}}">
+                        <img class="card-img-top" src="{{produit.image}}" alt="{{produit.nom}}" height="300px">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{produit.nom |striptags|slice(0, 40)}}...</h5>
+                        <p class="card-text">{{produit.description |striptags|slice(0, 40)}}...</br>
+                            <span class="gras">{{ produit.prix }} €</span></br>
+                        </p>
+                        <div class="container">
+                                {% for i in 1..5 %}
+                                {% if (i <= produit.nbStar) %} 
+                                    <img class="px-2" src="{{asset("symbole/etoile.png")}}" title="étoile" width="" height=""/>
+                                {% else %}
+                                    <img class="px-2" src="{{asset("symbole/etoileVide.png")}}" title="étoile" width="" height=""/>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                        <div class="container mt-3">
+                            <a href="{{path("detail_product", {"id": produit.id})}}">
+                                <button class="col-sm-6 .col-md-6 primary bord avis">Détail</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-2">
+                    {% if currentPage > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" 
+                            href="{{path('paginate_product', {'currentPage': currentPage - 1 , 'nbResult': nbResult})}}" 
+                            aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for page in 1.. nbPage %}
+                    <li class="page-item {% if page == currentPage %} active {% endif %}">
+                        <a class="page-link" href="{{path('paginate_product', {'currentPage': page , 'nbResult': nbResult})}}">
+                            {{page}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% if currentPage < nbPage %}
+                    <li class="page-item">
+                        <a class="page-link" 
+                            href="{{path('paginate_product', {'currentPage': currentPage + 1 , 'nbResult': nbResult})}}" 
+                            aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}

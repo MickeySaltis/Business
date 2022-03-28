@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nîmes'Alerie{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+    <!-- BODY -->
+
+        <!--Corps-->
+        <main class="container my-4">
+            <section class="container mb-4">
+                <div class=""> <!-- container ou fluid ? -->
+                    <div class="row"> <!-- align 12 colonnes -->
+                        <!--MAGASIN + TEMOIGNAGES -->
+                        <div class="col-lg-6 col-sm-6 ">
+                            <!--MAGASIN-->
+                            <div class="bord py-4 px-5 mb-5 primary">
+                                <h2 id="magasin" class="pt-2">La Nîmes'alerie</h2>
+                                    <p class="pt-1 pb-2">Que vous soyez le propriétaire d’un chien, d’un chat, d’un petit animal, 
+                                    d’un oiseau ou d’un poisson, une chose est sûre : votre animal a besoin d’une nourriture et de 
+                                    produits adaptés à son espèce. Vous y trouverez des articles de qualité, de grandes 
+                                    marques, ainsi que des conseils de qualité. 
+                                    Commandez facilement de la nourriture et des accessoires pour animaux en ligne et bénéficiez 
+                                    des avantages de votre animalerie en ligne : livraison gratuite et 
+                                    retour gratuit. 
+                                    </p>
+                            </div>
+                            <!--TEMOIGNAGES-->
+                            <div class="bord py-2 px-3 success">
+                                <h2 class="pt-2">Témoignage</h2>
+                                <!--SLIDER-->
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <p class="mx-5">Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses 
+                                        ambitioso editos apparatu diem sextum idus Octobres, qui imperii eius annum tricensimum terminabat, 
+                                        insolentiae pondera gravius librans, siquid dubium deferebatur aut falsum, pro liquido accipiens et 
+                                        conperto, inter alia excarnificatum Gerontium Magnentianae comitem partis exulari maerore multavit.</p>
+                                    </div>
+                                    <div class="carousel-item">
+                                      <p class="mx-5">Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses 
+                                        ambitioso editos apparatu diem sextum idus Octobres, qui imperii eius annum tricensimum terminabat, 
+                                        insolentiae pondera gravius librans, siquid dubium deferebatur aut falsum, pro liquido accipiens et 
+                                        conperto, inter alia excarnificatum Gerontium Magnentianae comitem partis exulari maerore multavit.</p>
+                                    </div>
+                                    <div class="carousel-item">
+                                      <p class="mx-5">Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses 
+                                        ambitioso editos apparatu diem sextum idus Octobres, qui imperii eius annum tricensimum terminabat, 
+                                        insolentiae pondera gravius librans, siquid dubium deferebatur aut falsum, pro liquido accipiens et 
+                                        conperto, inter alia excarnificatum Gerontium Magnentianae comitem partis exulari maerore multavit.</p>
+                                    </div>
+                                  </div>
+                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                  </button>
+                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                  </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <!--PRODUITS PHARE-->
+                            <div class="bord ps-3 warning">
+                                <h2 class="ps-1 py-1">Produits phares</h2>
+                                <div class="row container mb-2 text-center">
+                                <!-- Boucle Produit | limité à 2 exemplaires -->
+                                    {% for produit in produits | slice(0,2) %}
+                                    <div class="col-lg-6 col-sm-6 container">
+                                        <a href="{{path("detail_product", {"id": produit.id})}}">
+                                            <img src="{{produit.image}}" alt="" width="75%" height="" />
+                                        </a>
+                                        <p>
+                                            <a class="lienProduit" href="{{path("detail_product", {"id": produit.id})}}">
+                                                <span class="gras">{{produit.nom}}</span> pour <span class="gras">{{produit.prix}} €</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="row container text-center">
+                                <!-- Boucle Produit | limité à 2 exemplaires -->
+                                    {% for produit in produits | slice(2,2) %}
+                                    <div class="col-lg-6 col-sm-6 container">
+                                        <a href="{{path("detail_product", {"id": produit.id})}}">
+                                            <img src="{{produit.image}}" alt="" width="75%" height="" />
+                                        </a>
+                                        <p>
+                                            <a class="lienProduit" href="{{path("detail_product", {"id": produit.id})}}">
+                                                <span class="gras">{{produit.nom}}</span> pour <span class="gras">{{produit.prix}} €</span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <!--EXPLORATION SPATIALE-->
+                <div class="container bord primary mb-3">
+                    <h2 id="spatiale" class="pt-2 text-center">Exploration spatiale</h2>
+                        <p class="px-5 pb-2">Iamque lituis cladium concrepantibus internarum non celate ut antea turbidum saeviebat ingenium a veri consideratione detortum et nullo inpositorum vel conpositorum fidem sollemniter inquirente nec discernente a societate noxiorum insontes velut exturbatum e iudiciis fas omne discessit, et causarum legitima silente defensione carnifex rapinarum sequester et obductio capitum et bonorum ubique multatio versabatur per orientales provincias, quas recensere puto nunc oportunum absque Mesopotamia digesta, cum bella Parthica dicerentur, et Aegypto, quam necessario aliud reieci ad tempus </p>
+                         <p class="px-5 pb-2"> En partenariat avec: <a href="https://www.spacex.com/" target="_blank" ><img src="{{asset("image/Couleur-logo-SpaceX.jpg")}}" width="100px" height="40px" title="spaceX" class="spaceX ms-2"></a></p>
+                </div>
+            </section>
+          </main>
+            <!-- SLIDER-->
+            <section class="container-fluid slider mb-3 py-3 ">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                      <div class="container row align-items-center mx-auto">
+                        {% for produit in produits | slice(4,2) %}
+                            <img src="{{produit.image}}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
+                            <p class="col-lg-3 col-sm-6 text-center"><span class="gras">
+                              <a href="{{path("detail_product", {"id": produit.id})}}" class="text-decoration-none">
+                                {{produit.nom}}</a></span> pour le prix de <span class="gras">{{produit.prix}} €</span>
+                            </p>
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    <div class="carousel-item ">
+                      <div class="container row align-items-center mx-auto">
+                        {% for produit in produits | slice(2,2) %}
+                            <img src="{{produit.image}}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
+                            <p class="col-lg-3 col-sm-6 text-center"><span class="gras">
+                              <a href="{{path("detail_product", {"id": produit.id})}}" class="text-decoration-none">
+                                {{produit.nom}}</a></span> pour le prix de <span class="gras">{{produit.prix}} €</span>
+                            </p>
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+            </section>
+
+</div>
+{% endblock %}

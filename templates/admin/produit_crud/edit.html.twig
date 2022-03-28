@@ -1,0 +1,13 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %} {{parent()}} -- Modifier le produit {% endblock %}
+
+{% block body %}
+    <h1>Modifier le produit</h1>
+
+    {{ include('admin/produit_crud/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_produit_crud_index') }}">Retour à la liste</a>
+
+    {{ include('admin/produit_crud/_delete_form.html.twig') }}
+{% endblock %}

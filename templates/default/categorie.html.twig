@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nîmes'Alerie{% endblock %}
+
+{% block body %}
+ 
+     <!-- Corps-->
+        <div class="container text-center primary bord mt-3">
+            <h1 class="my-2">Nos Produits</h1> 
+        </div>
+
+        <div class="container text-center success bord my-4 pt-2">
+            <div class="row">
+            <!-- Affichage des Produits -->
+                {% if produits|length > 0 %}
+                    {% for produit in produits %}
+                        <div class="col d-flex justify-content-center">
+                            <div class="card m-2" style="width: 18rem;">
+                                <a href="{{path("detail_product", {"id": produit.id})}}">
+                                    <img class="card-img-top" src="{{produit.image}}" alt="{{produit.nom}}" height="300px">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{produit.nom |striptags|slice(0, 40)}}...</h5>
+                                    <p class="card-text">{{produit.description |striptags|slice(0, 40)}}...</br>
+                                        <span class="gras">{{ produit.prix }} €</span></br>
+                                    </p>
+                                    <div class="container">
+                                            {% for i in 1..5 %}
+                                            {% if (i <= produit.nbStar) %} 
+                                                <img class="px-2" src="{{asset("symbole/etoile.png")}}" title="étoile" width="" height=""/>
+                                            {% else %}
+                                                <img class="px-2" src="{{asset("symbole/etoileVide.png")}}" title="étoile" width="" height=""/>
+                                            {% endif %}
+                                            {% endfor %}
+                                    </div>
+                                    <div class="container mt-3">
+                                        <a href="{{path("detail_product", {"id": produit.id})}}">
+                                            <button class="col-sm-6 .col-md-6 primary bord avis">Détail</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 class="text-center"> Oups, il n'y a pas de produit sous cette catégorie.</h2>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}

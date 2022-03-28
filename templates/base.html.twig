@@ -1,19 +1,383 @@
 <!DOCTYPE html>
 <html>
+<!-- Base côté Visiteur -->
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}la Nîmes'alerie{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    
+    <!-- CSS -->
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset("css/default.css")}}">
+            <link rel="stylesheet" href="{{ asset("css/bootstrap.css")}}">
+            <link rel="stylesheet" href="{{ asset("css/cookie.css")}}">
         {% endblock %}
 
+    <!-- JS -->
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script rel="script" src="{{ asset("js/bootstrap.bundle.js")}}"></script>
         {% endblock %}
+
+    <!-- EN-TETE -->
+
+        {% block head %}
+            <!-- en-tête -->
+            <div class="backCat d-flex align-items-center">
+                    <!--image-->
+                <div class="container-fluid text-center ">
+                    <a href="{{path("default")}}" ><img src="{{asset("image/Logo.png")}}"alt="" width="150" height="150" class="logo" /></a>
+                    <h1>La Nîmes'alerie</h1>
+                        <p>Le spécialiste qui fait monter votre animal au 7ème ciel.</p>
+                </div>
+            </div>
+                <!--nav 1-->
+                <nav class="navbar navbar-expand-lg navbar-light primary">
+                    <div class="container-fluid">
+                    <form class="d-flex me-3">
+                        <input class="form-control recherche " type="search" placeholder="Rechercher" aria-label="Rechercher">
+                         <button class="btn ms-1 btn-outline-success" type="submit">Rechercher</button>
+                    </form>
+                      <button class="navbar-toggler navcolor" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav  my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                          <li class="nav-item ">
+                            <a class="nav-link active ms-5" aria-current="page" href="{{path('paginate_product', {'currentPage': 1 , 'nbResult': 4})}}"><img src="{{asset("symbole/croquettes.png")}}" title="exploration spatiale" width="" height=""/> Nos produits</a>
+                          </li>
+                          <li class="nav-item ">
+                            <a class="nav-link active mx-3" aria-current="page" href="{{path("default",{"_fragment":"spatiale"})}}"><img src="{{asset("symbole/space-travel.png")}}" title="exploration spatiale" width="" height=""/> Exploration spatiale</a>
+                          </li>
+                          <li class="nav-item ">
+                            <a class="nav-link active mx-3" href="{{path("default",{"_fragment":"magasin"})}}"><img src="{{asset("symbole/demonstration-en-magasin.png")}}" title="Mon magasin" width="" height=""/> Mon magasin</a>
+                          </li>
+                          {% if app.user %}
+                          <li class="nav-item">
+                            <a class="nav-link active mx-3" href="Connexion.html"><img src="{{asset("symbole/utilisateur.png")}}" title="Mon compte" width="" height=""/> {{ app.user.username }}</a>
+                          </li>
+                          {% else %}
+                          <li class="nav-item">
+                            <a class="nav-link active mx-3" href="{{path('app_login')}}"><img src="{{asset("symbole/utilisateur.png")}}" title="Mon compte" width="" height=""/> Se connecter</a>
+                          </li>
+                          {% endif %}
+                          {% if app.user %}
+                          <li class="nav-item">
+                            <a class="nav-link active mx-3" href="{{path('app_logout')}}"><img src="{{asset("symbole/utilisateur.png")}}" title="Mon compte" width="" height=""/> Se déconnecter</a>
+                          </li>
+                          {% endif %}
+                          <li class="nav-item">
+                            <a class="nav-link active mx-3" href="{{path("panier_display")}}"><img src="{{asset("symbole/panier.png")}}" title="Mon panier" width="" height=""/> Mon panier</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active mx-3" href="#"><img src="{{asset("symbole/information.png")}}" title="Aides et services" width="" height=""/> Aides et services</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+                <!--nav 2-->
+                <nav class="navbar navbar-expand-lg navbar-light success">
+                    <div class="container-fluid">
+                      <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <img src="{{asset("symbole/animaux-acceptes.png")}}" title="animaux" width="" height=""/><p class="gras black">Nos produits</p>
+                      </button>
+
+                      <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                          <li class="nav-item dropdown">
+                            <a class="nav-link me-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset("symbole/chien.png")}}" title="chien" width="" height=""/> Chiens
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 1})}}">
+                                  Alimentations & friandises
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 2})}}">
+                                  Soins & hygiènes
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 3})}}">
+                                  Jouets
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 4})}}">
+                                  Couchages
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 5})}}">
+                                  Transport
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 1 , 'sousCategorie': 6})}}">
+                                  Gamelles
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link mx-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/chat.png")}}" title="chat" width="" height=""/> Chats
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 1})}}">
+                                  Alimentations & friandises
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 2})}}">
+                                  Soins & hygiènes
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 3})}}">
+                                  Jouets
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 4})}}">
+                                  Couchages
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 5})}}">
+                                  Transport
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 2 , 'sousCategorie': 6})}}">
+                                  Gamelles
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link mx-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/poisson-clown.png")}}" title="poisson-clown" width="" height=""/> Poissons
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 3 , 'sousCategorie': 7})}}">
+                                  Alimentations
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 3 , 'sousCategorie': 8})}}">
+                                  Aquariums et technologie d'aquarium
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 3 , 'sousCategorie': 9})}}">
+                                  Aménagement & accessoires
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 3 , 'sousCategorie': 10})}}">
+                                  Entretiens & hygiènes des aquariums
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link mx-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/hamster.png")}}" title="hamster" width="" height=""/> Rongeurs & co
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 4 , 'sousCategorie': 1})}}">
+                                  Alimentations & friandises
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 4 , 'sousCategorie': 11})}}">
+                                 Entretiens & hygiènes
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 4 , 'sousCategorie': 3})}}">
+                                  Jouets
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 4 , 'sousCategorie': 12})}}">
+                                  Maisonettes
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 4 , 'sousCategorie': 5})}}">
+                                  Transport
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link mx-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/oiseau.png")}}" title="oiseau" width="" height=""/> Oiseaux
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 5 , 'sousCategorie': 1})}}">
+                                  Alimentations & friandises
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 5 , 'sousCategorie': 11})}}">
+                                  Entretiens & hygiènes
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 5 , 'sousCategorie': 3})}}">
+                                 Jouets
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 5 , 'sousCategorie': 13})}}">
+                                  Volières
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 5 , 'sousCategorie': 5})}}">
+                                  Transport
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link mx-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/serpent.png")}}" title="serpent" width="" height=""/> Reptiles
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 6 , 'sousCategorie': 7})}}">
+                                  Alimentations
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 6 , 'sousCategorie': 14})}}">
+                                  Equipements & entretiens
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 6 , 'sousCategorie': 15})}}">
+                                  Terrariums
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link ms-3 dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <img src="{{asset("symbole/jardin.png")}}" title="jardin" width="" height=""/> Jardin & bassin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 16})}}">
+                                  Poules & ferme
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 17})}}">
+                                  Nourritures pour poissons de bassin
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 18})}}">
+                                  Entretiens bassins
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 19})}}">
+                                  Eléments techniques & accessoires pour bassin
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 20})}}">
+                                 Animaux sauvages
+                                </a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="{{path('categorie', {'categorie': 7 , 'sousCategorie': 21})}}">
+                                  Oiseaux sauvages
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </nav>
+        {% endblock %}
+
     </head>
-    <body>
+    <body class="back">
         {% block body %}{% endblock %}
+
+    <!-- COOKIE -->
+    {% if app.request.cookies.get("accepted") != 1 %}
+        <div class="cookie-consent"> 
+            <span>Ce site utilise des cookies pour améliorer l'expérience utilisateur. Voir <a href="#" class="ml-1 text-decoration-none">Politique de confidentialité</a> </span>
+            <div class="mt-2 d-flex align-items-center justify-content-center g-2"> 
+                <a href="{{path('cookie_authorize')}}">
+                    <button class="allow-button me-1">Autorise les cookies</button>
+                </a>
+                <button class="allow-button">Annuler</button> 
+            </div>
+        </div>
+    {% endif %}
+
+
+    <!-- PIED DE PAGE -->
+
+    {% block footer %}
+        <footer class="container-fluid bord">
+            <section class="row text-center success">
+                <div class=" pt-2 pb-4 col-lg-4 col-sm-12 border container">
+                    <h2>Moyens de paiement</h2>
+                        <img class="px-3" src="{{asset("symbole/visa.png")}}" title="Visa" width="" height=""/>
+                        <img class="px-3" src="{{asset("symbole/maestro.png")}}" title="Maestro" width="" height=""/>
+                        <img class="px-3" src="{{asset("symbole/american-express.png")}}" title="American-express" width="" height=""/>
+                        <img class="px-3" src="{{asset("symbole/paypal.png")}}" title="Paypal" width="" height=""/>
+                </div>
+                <div class=" pt-2 pb-3 col-lg-4 col-sm-12 border container">
+                    <h2>Livraison</h2>
+                    <img class="px-3" src="{{asset("symbole/livraison-gratuite.png")}}" title="Gratuit" width="" height=""/>
+                    <img class="px-3" src="{{asset("symbole/livraison-24h-24.png")}}" title="Sous 24h" width="" height=""/>
+                </div>
+                <div class=" pt-2 pb-3 col-lg-4 col-sm-12 border container">
+                    <h2>Remboursement</h2>
+                    <img src="{{asset("symbole/30-jours.png")}}" title="Sous 30j" width="" height=""/>
+                </div>
+            </section>
+            <section class="py-2 row primary lien">
+                <div class=" row container-fluid text-center">
+                    <p class="col-lg-2 col-sm-12"> <a href="{{path("qui_sommes_nous")}}">Qui sommes-nous</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("presse")}}">Presse</a></p>
+                    <p class=" col-lg-2 col-sm-12"><a href="{{path("emplois")}}">Emplois</a></p>
+                    <p class=" col-lg-2 col-sm-12"><a href="{{path("mention_legale")}}">mentions légales</a></p>
+                    <p class=" col-lg-2 col-sm-12"><a href="{{path("cgv")}}">Conditions générales de Vente</a></p>
+                    <p class=" col-lg-2 col-sm-12"><a href="{{path("retraction")}}">Formulaire de rétractation</a></p>
+                </div>
+                <div class=" row container-fluid text-center">
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("elimination_dechet")}}">Elimination des déchets</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("contact")}}">Contact</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("livraison")}}">Frais et délais de livraison</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("moyen_de_paiement")}}">Moyens de paiement</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("affiliation")}}">Programme d'affiliation</a></p>
+                    <p class="col-lg-2 col-sm-12"><a href="{{path("confidentialite")}}">Confidentialité</a></p>
+                </div>
+            </section>
+            <p class="fin pt-2">@la nimes'alerie</p>
+        </footer>
+
+    {% endblock %}
+
     </body>
+    
 </html>

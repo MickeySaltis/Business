@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block body %}
+<div class=" container ">
+    <div class="card my-5 text-center primary success">
+        <h5 class="card-header black success">Créer un compte</h5>
+        <div class="card-body primary gras">
+           
+                {{ form_start(registrationForm) }}
+                <form>
+                    <div class="mb-3">
+                    <label for="Username" class="form-label">Nom d'utilisateur</label></br>
+                        {{ form_widget(registrationForm.username) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="Password" class="form-label">Mot de passe</label></br>
+                        {{ form_widget(registrationForm.plainPassword, {
+                            label: 'Password'
+                        }) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="isMrs" class="form-label">Genre</label></br>
+                        {{ form_widget(registrationForm.isMrs) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="firstname" class="form-label">Prénom</label></br>
+                        {{ form_widget(registrationForm.firstname) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="lastname" class="form-label">Nom</label></br>
+                        {{ form_widget(registrationForm.lastname) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="birthday" class="form-label">Date de naissance</label></br>
+                        {{ form_widget(registrationForm.birthday) }}
+                    </div>
+                    <div class="mb-3">
+                    <label for="email" class="form-label">Adresse mail</label></br>
+                        {{ form_widget(registrationForm.email) }}
+                    </div>
+                    <div class="mb-3 form-error">
+                        {{form_errors(registrationForm)}}
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Valider</button>
+                </form>
+                {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
