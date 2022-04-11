@@ -17,7 +17,7 @@
                         <!--MAGASIN + TEMOIGNAGES -->
                         <div class="col-lg-6 col-sm-6 ">
                             <!--MAGASIN-->
-                            <div class="bord py-4 px-5 mb-5 primary">
+                            <div class="bord mt-2 py-4 px-5 mb-5 primary">
                                 <h2 id="magasin" class="pt-2">La Nîmes'alerie</h2>
                                     <p class="pt-1 pb-2">Que vous soyez le propriétaire d’un chien, d’un chat, d’un petit animal, 
                                     d’un oiseau ou d’un poisson, une chose est sûre : votre animal a besoin d’une nourriture et de 
@@ -66,14 +66,14 @@
                         </div>
                         <div class="col-lg-6 col-sm-6">
                             <!--PRODUITS PHARE-->
-                            <div class="bord ps-3 warning">
+                            <div class="bord ps-3 mt-2 warning">
                                 <h2 class="ps-1 py-1">Produits phares</h2>
                                 <div class="row container mb-2 text-center">
                                 <!-- Boucle Produit | limité à 2 exemplaires -->
                                     {% for produit in produits | slice(0,2) %}
                                     <div class="col-lg-6 col-sm-6 container">
                                         <a href="{{path("detail_product", {"id": produit.id})}}">
-                                            <img src="{{produit.image}}" alt="" width="75%" height="" />
+                                            <img src="{{ asset('image/produits/' ~ produit.image ) }}" alt="" width="75%" height="" />
                                         </a>
                                         <p>
                                             <a class="lienProduit" href="{{path("detail_product", {"id": produit.id})}}">
@@ -88,7 +88,7 @@
                                     {% for produit in produits | slice(2,2) %}
                                     <div class="col-lg-6 col-sm-6 container">
                                         <a href="{{path("detail_product", {"id": produit.id})}}">
-                                            <img src="{{produit.image}}" alt="" width="75%" height="" />
+                                            <img src="{{ asset('image/produits/' ~ produit.image ) }}" alt="" width="75%" height="" />
                                         </a>
                                         <p>
                                             <a class="lienProduit" href="{{path("detail_product", {"id": produit.id})}}">
@@ -120,7 +120,7 @@
                     <div class="carousel-item active">
                       <div class="container row align-items-center mx-auto">
                         {% for produit in produits | slice(4,2) %}
-                            <img src="{{produit.image}}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
+                            <img src="{{ asset('image/produits/' ~ produit.image ) }}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
                             <p class="col-lg-3 col-sm-6 text-center"><span class="gras">
                               <a href="{{path("detail_product", {"id": produit.id})}}" class="text-decoration-none">
                                 {{produit.nom}}</a></span> pour le prix de <span class="gras">{{produit.prix}} €</span>
@@ -132,7 +132,7 @@
                     <div class="carousel-item ">
                       <div class="container row align-items-center mx-auto">
                         {% for produit in produits | slice(2,2) %}
-                            <img src="{{produit.image}}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
+                            <img src="{{ asset('image/produits/' ~ produit.image ) }}" class="d-block col-lg-3 col-sm-6" alt="{{produit.nom}}" width="" height="250">
                             <p class="col-lg-3 col-sm-6 text-center"><span class="gras">
                               <a href="{{path("detail_product", {"id": produit.id})}}" class="text-decoration-none">
                                 {{produit.nom}}</a></span> pour le prix de <span class="gras">{{produit.prix}} €</span>

@@ -36,8 +36,7 @@ class RegistrationFormType extends AbstractType
                 'first_options' => ['attr' => array('placeholder' => 'Mot de passe'),
                                         'label' => '=> '],
                 'second_options' => ['attr' => array('placeholder' => 'Confirmez mot de passe'),
-                                        'label' => '=> '],
-                
+                                        'label' => '=> '],               
             ])
             ->add('firstname')
             ->add('lastname')

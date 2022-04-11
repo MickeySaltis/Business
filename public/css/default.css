@@ -18,7 +18,7 @@
 
 /********  FOND */
 
-.backCat
+.backCats
 {
 	background: url(../image/test.jpg) no-repeat, center;
 	background-size: cover;
@@ -41,9 +41,10 @@
 {
 	color: #AFFC41 !important;
 }
-.backCat
+.tete
 {
-	color: #AFFC41;
+	color: #AFFC41 !important;
+	text-shadow: #086375 1px 3px 0, #086375 1px 13px 5px;
 }
 .primary
 {
@@ -56,6 +57,10 @@
 .fin
 {
 	color: #AFFC41;
+}
+.bleu
+{
+	color: #086375 !important;
 }
 .black
 {

@@ -1,6 +1,5 @@
 <?php
-// SOUCIS ne Rajoute pas sur le productOrder existant/ ne modifie pas ni ne supprime
-// $produit == $productOrder->getProduct()
+
 namespace App\Controller;
 
 use App\Repository\ProduitRepository;
@@ -42,7 +41,7 @@ class PanierController extends AbstractController
         $exist = false;
 
         // Vérification : si il y a déjà le Produit choisi dans le Panier
-        // NOTE: Ne pas indiqué le même nom de variable dans la boucle que 
+        // NOTE: Ne pas indiquer le même nom de variable dans la boucle que 
         // le productOrder sous peine de reprendre l'élément qui est présent dans le panier et le dupliquer
         foreach ( $panier as $productOrderElem ) {
 //var_dump($productOrderElem->getProduct()->getNom());

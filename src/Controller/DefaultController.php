@@ -63,6 +63,7 @@ class DefaultController extends AbstractController
     // Ajout Quantité Produit 
     #[Route('/plus', name: '+')]  
     public function plusQuantite (Request $request) {
+        
         // Récupération de la SESSION
         $session = $request->getSession();
         // Récupération de Quantite dans la SESSION
@@ -79,7 +80,7 @@ class DefaultController extends AbstractController
 
         //var_dump($quantite);
         //die;
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirect($request->headers->get(('referer')));
     }
     // Soustraction Quantité Produit 
     #[Route('/moins', name: '-')]  

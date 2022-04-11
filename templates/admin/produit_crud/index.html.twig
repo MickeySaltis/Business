@@ -18,7 +18,7 @@
 {% block heading %} ADMINISTRATION -> Les produits {% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
+    <h1 class="bleu">Liste des produits</h1>
 
     <!-- Tableau des Produits -->
     <table class="table">
@@ -39,7 +39,7 @@
                 <td class="gras align-middle">{{ produit.id }}</td>
                 <td class="gras align-middle">{{ produit.nom }}</td>
                 <td class="align-middle">{{ produit.description |striptags|slice(0, 30) }}...</td>
-                <td><img src="{{produit.image}}" class="img-thumbnail" width="100px" alt="..."></td>
+                <td><img src="{{ asset('image/produits/' ~ produit.image ) }}" class="img-thumbnail" width="100px" alt="..."></td>
                 <td class="align-middle">{{ produit.prix }} €</td>
                 <td class="align-middle">{{ produit.nbStar }} / 5</td>
                 <td class="align-middle">

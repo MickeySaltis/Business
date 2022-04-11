@@ -13,7 +13,7 @@
             <div class="row " >
                 <!-- Image Produit -->
                 <div class="col-sm-6 .col-md-6 container">
-                    <img class=" rounded-3" src="{{produit.image}}" title="{{produit.nom}}" width="" height="600px"/>
+                    <img class="img-thumbnail rounded-3 mt-5" src="{{ asset('image/produits/' ~ produit.image ) }}" title="{{produit.nom}}" width="" height="600px"/>
                 </div>
                 <!-- Titre + Description -->
                 <div class="col-sm-6 .col-md-6">                   
@@ -78,7 +78,7 @@
                     {% for p in produits | slice(0,3) %}
                         <div class="col-sm-4 .col-md-6 container">
                           <a href="{{path("detail_product", {"id": p.id})}}" class="text-decoration-none">
-                            <img class="mb-2" src="{{p.image}}" title="{{p.nom}}" width="150px" height=""/>
+                            <img class="mb-2" src="{{ asset('image/produits/' ~ p.image ) }}" title="{{p.nom}}" width="150px" height=""/>
                             <p class="black gras">{{p.nom}}<br>
                                 {{p.prix}}€</p>
                           </a>
@@ -90,7 +90,7 @@
                 <!-- Ajouter au panier -->
                 <div class="col-sm-6 .col-md-6 mb-2">
                   <div class=" container warning bord pb-2 opacity-75">
-                        <p class="bord px-5 selection my-3 text-center gras"> Quantité</p>
+                        <p id="quantite" class="bord px-5 selection my-3 text-center gras"> Quantité</p>
 
                         <div class="row  selection gras bord text-center">  
                                 <p class="col mt-5">X {{quantite}}</p>  
